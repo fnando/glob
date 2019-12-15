@@ -9,3 +9,7 @@ Metrics/BlockLength:
   Exclude:
     - test/**/*_test.rb
     - glob.gemspec
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*_test.rb

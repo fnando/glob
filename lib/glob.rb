@@ -2,15 +2,18 @@
 
 require "glob/map"
 require "glob/query"
-require "glob/result"
+require "glob/matcher"
+require "glob/symbolize_keys"
 require "glob/version"
 
 module Glob
-  def self.new(target)
-    Query.new(target)
+  def self.filter(target, paths = ["*"])
+    glob = new(target)
+    paths.each {|path| glob.filter(path) }
+    glob.to_h
   end
 
-  def self.query(target, query)
-    Query.new(target).query(query)
+  def self.new(target)
+    Query.new(target)
   end
 end

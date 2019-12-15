@@ -23,6 +23,13 @@ Or install it yourself as:
 
 ## Usage
 
+There are two types of paths: `include` and `exclude`.
+
+- The `include` path adds that node to the new hash.
+- The `exclude` path is the one started by `!`, and will prevent that path from being added.
+
+The latest rules have more precedence; that means that if you have the rule `*.messages.*`, then add a following rule as `!*.messages.bye`, all `*.messages.*` but `*.messages.bye` will be included.
+
 ```ruby
 glob = Glob.new(
   site: {
@@ -38,12 +45,12 @@ glob = Glob.new(
   }
 )
 
-result = glob.query("*.settings.*")
+glob << "*.settings.*"
 
-result.paths
+glob.paths
 #=> ["site.settings.name", "site.settings.url", "user.settings.name"]
 
-result.to_h
+glob.to_h
 #=> {
 #=>   site: {
 #=>     settings: {
@@ -59,9 +66,6 @@ result.to_h
 ```
 
 Notice that the return result will have symbolized keys.
-
-If you're planning to do one-off searches, then you can use
-`Glob.query(target, paths)` instead.
 
 ## Development
 
