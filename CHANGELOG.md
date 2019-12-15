@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.2.0
 
 - Allow rejecting patterns like `!*.activerecord`.
 - New API.
