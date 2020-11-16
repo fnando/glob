@@ -3,8 +3,12 @@
 require "simplecov"
 SimpleCov.start
 
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require "bundler/setup"
 require "glob"
 
 require "minitest/utils"
 require "minitest/autorun"
+
+Dir["#{__dir__}/support/**/*.rb"].sort.each do |file|
+  require file
+end
