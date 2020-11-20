@@ -47,7 +47,12 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (1.1.1)
       parser (>= 2.7.1.5)
-    rubocop-fnando (0.0.13)
+    rubocop-fnando (0.0.14)
+      rubocop
+      rubocop-performance
+    rubocop-performance (1.9.0)
+      rubocop (>= 0.90.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.10.1)
     simplecov (0.19.1)
       docile (~> 1.1)
