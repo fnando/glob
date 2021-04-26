@@ -125,10 +125,12 @@ class GlobTest < Minitest::Test
   end
 
   test "with just a star" do
-    expected = {config: {
-      user: {name: "USER", email: "EMAIL"},
-      site: {name: "SITE", host: "HOST"}
-    }}
+    expected = {
+      config: {
+        user: {name: "USER", email: "EMAIL"},
+        site: {name: "SITE", host: "HOST"}
+      }
+    }
     glob = Glob.new(expected)
     glob << "*"
 
