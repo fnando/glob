@@ -11,7 +11,7 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## v0.2.1 - 2022-01-13
 
 - [Changed] .gem package now include tests files.
 
