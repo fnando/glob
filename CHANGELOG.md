@@ -11,6 +11,10 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
+## Unreleased
+
+- [Changed] .gem package now include tests files.
+
 ## v0.2.0
 
 - [Added] Allow rejecting patterns like `!*.activerecord`.
