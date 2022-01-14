@@ -27,7 +27,7 @@ module Glob
 
     def paths
       matches = map.map do |path|
-        results = matchers.select {|matcher| matcher.match?(path) }
+        results = matchers.select {|matcher| matcher.match?(path) } # rubocop:disable Style/SelectByRegexp
         [path, results]
       end
 
