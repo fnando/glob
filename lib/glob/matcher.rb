@@ -8,7 +8,9 @@ module Glob
       @path = path
       @reject = path.start_with?("!")
 
-      pattern = Regexp.escape(path.gsub(/^!/, "")).gsub(/\\\*/, "[^.]+")
+      pattern = Regexp.escape(path.gsub(/^!/, ""))
+                      .gsub(/(\\{.*?\\})/) {|match| process_group(match) }
+                      .gsub(/\\\*/, "[^.]+")
       @regex = Regexp.new("^#{pattern}")
     end
 
@@ -22,6 +24,12 @@ module Glob
 
     def reject?
       @reject
+    end
+
+    def process_group(group)
+      group = group.gsub(/[{}\\]/, "").split(",").join("|")
+
+      "(#{group})"
     end
   end
 end

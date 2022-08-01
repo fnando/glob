@@ -189,4 +189,35 @@ class GlobTest < Minitest::Test
 
     assert_equal expected, actual
   end
+
+  test "using groups as root key" do
+    glob = Glob.new(
+      pt: {hello: "Olá!"},
+      en: {hello: "Hello!"},
+      es: {hello: "¡Hola!"}
+    )
+
+    glob << "{pt,en}.*"
+
+    assert_equal ["en.hello", "pt.hello"], glob.paths
+  end
+
+  test "using groups in mixed positions" do
+    glob = Glob.new(
+      pt: {messages: {hello: "Olá!", goodbye: "Tchau!"}},
+      en: {messages: {hello: "Hello!", goodbye: "Goodbye!"}},
+      es: {messages: {hello: "¡Hola!", goodbye: "¡Adios!"}}
+    )
+
+    glob << "{pt,en}.messages.{hello,goodbye}"
+
+    expected = [
+      "en.messages.goodbye",
+      "en.messages.hello",
+      "pt.messages.goodbye",
+      "pt.messages.hello"
+    ]
+
+    assert_equal expected, glob.paths
+  end
 end

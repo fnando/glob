@@ -28,6 +28,9 @@ There are two types of paths: `include` and `exclude`.
 - The `exclude` path is the one started by `!`, and will prevent that path from
   being added.
 
+Rules may also have groups. Let's say you want to target `en.*` and `pt.*`; you
+case set `{en,pt}.*` rather than having two separate rules.
+
 The latest rules have more precedence; that means that if you have the rule
 `*.messages.*`, then add a following rule as `!*.messages.bye`, all
 `*.messages.*` but `*.messages.bye` will be included.
