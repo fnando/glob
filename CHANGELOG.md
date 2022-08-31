@@ -11,6 +11,11 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
+## Unreleased
+
+- [Fixed] Keys with dots are now properly handled; paths that contain dots will
+  now use `\\.` as a escape sequence.
+
 ## v0.2.2 - 2022-02-01
 
 - [Fixed] Properly handle numeric keys.

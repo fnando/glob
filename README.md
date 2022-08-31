@@ -72,6 +72,38 @@ glob.to_h
 
 Notice that the return result will have symbolized keys.
 
+If the contains dots, then the result will use `\\.` as the escape sequence.
+Similarly, you need to escape keys with dots when filtering results.
+
+```ruby
+glob = Glob.new(
+  formats: {
+    ".txt" => "Text",
+    ".json" => "JSON",
+    ".rb" => "Ruby"
+  }
+)
+
+glob << "*"
+
+glob.paths
+#=> ["formats.\\.json", "formats.\\.rb", "formats.\\.txt"]
+
+glob.to_h
+#=> {:formats=>{:".json"=>"JSON", :".rb"=>"Ruby", :".txt"=>"Text"}}
+
+# Remove all existing matchers
+glob.matchers.clear
+
+glob << "formats.\\.rb"
+
+glob.paths
+#=> ["formats.\\.rb"]
+
+glob.to_h
+#=> {:formats=>{:".rb"=>"Ruby"}}
+```
+
 ## Maintainer
 
 - [Nando Vieira](https://github.com/fnando)

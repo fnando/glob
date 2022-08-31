@@ -13,15 +13,19 @@ module Glob
 
     def call
       @target
-        .map {|(key, value)| compute(value, key) }
+        .map {|(key, value)| compute(value, escape(key)) }
         .flatten
         .sort
+    end
+
+    private def escape(key)
+      key.to_s.gsub(".", "\\.")
     end
 
     private def compute(value, path)
       if value.is_a?(Hash)
         value.map do |key, other_value|
-          compute(other_value, "#{path}.#{key}")
+          compute(other_value, "#{path}.#{escape(key)}")
         end
       else
         path.to_s
