@@ -233,11 +233,9 @@ class GlobTest < Minitest::Test
 
     glob << "*"
 
-    expected = Glob::SymbolizeKeys.call(data)
-
     assert_equal %w[keys\\.with\\.dots node.more\\.keys\\.with\\.dots],
                  glob.paths
-    assert_equal expected, glob.to_h
+    assert_equal Glob::SymbolizeKeys.call(data), glob.to_h
 
     assert_equal ({node: {"more.keys.with.dots": "more dots"}}),
                  Glob.filter(data, ["node.more\\.keys\\.with\\.dots"])
