@@ -13,8 +13,7 @@ Prefix your message with one of the following:
 
 ## Unreleased
 
-- [Fixed] Keys with dots are now properly handled; paths that contain dots will
-  now use `\\.` as a escape sequence.
+- [Fixed] Handle keys with dots properly by using `\\.` as a escape sequence.
 
 ## v0.2.2 - 2022-02-01
 
