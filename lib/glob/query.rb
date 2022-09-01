@@ -18,7 +18,7 @@ module Glob
       symbolized_target = SymbolizeKeys.call(@target)
 
       paths.each_with_object({}) do |path, buffer|
-        segments = path.split(".").map(&:to_sym)
+        segments = path.split(/(?<!\\)\./).map {|key| unescape(key).to_sym }
         value = symbolized_target.dig(*segments)
         set_path_value(segments, buffer, value)
       end
@@ -39,6 +39,10 @@ module Glob
 
     private def map
       @map ||= Map.call(@target)
+    end
+
+    private def unescape(key)
+      key.to_s.gsub(/\\\./, ".")
     end
 
     private def set_path_value(segments, target, value)

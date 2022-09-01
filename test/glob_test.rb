@@ -220,4 +220,24 @@ class GlobTest < Minitest::Test
 
     assert_equal expected, glob.paths
   end
+
+  test "with keys that contain dots" do
+    data = {
+      "keys.with.dots" => "dots",
+      node: {
+        "more.keys.with.dots" => "more dots"
+      }
+    }
+
+    glob = Glob.new(data)
+
+    glob << "*"
+
+    assert_equal %w[keys\\.with\\.dots node.more\\.keys\\.with\\.dots],
+                 glob.paths
+    assert_equal Glob::SymbolizeKeys.call(data), glob.to_h
+
+    assert_equal ({node: {"more.keys.with.dots": "more dots"}}),
+                 Glob.filter(data, ["node.more\\.keys\\.with\\.dots"])
+  end
 end
