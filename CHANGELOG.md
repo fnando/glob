@@ -11,9 +11,13 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## v0.3.1 - 2022-09-01
 
 - [Fixed] Handle keys with dots properly by using `\\.` as a escape sequence.
+
+## v0.3.0 - 2022-08-01
+
+- [Added] Patterns can have groups like in `{a,b}.*`.
 
 ## v0.2.2 - 2022-02-01
 
