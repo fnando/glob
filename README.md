@@ -72,7 +72,7 @@ glob.to_h
 
 Notice that the return result will have symbolized keys.
 
-If the contains dots, then the result will use `\\.` as the escape sequence.
+If the key contain dots, then the result will use `\\.` as the escape sequence.
 Similarly, you need to escape keys with dots when filtering results.
 
 ```ruby
@@ -102,6 +102,29 @@ glob.paths
 
 glob.to_h
 #=> {:formats=>{:".rb"=>"Ruby"}}
+```
+
+You can set new keys by using `.set(path, value)`:
+
+```ruby
+glob = Glob.new
+glob << "*"
+glob.set "a.b.c", "hello"
+
+glob.to_h
+#=> {:a=>{:b=>{:c=>"hello"}}}
+
+glob.paths
+#=> ["a.b.c"]
+
+# The non-hash value will be replaced in case the new path overlaps it
+glob.set "a.b.c.d.e", "hello"
+
+glob.to_h
+#=> {:a=>{:b=>{:c=>{:d=>{:e=>"hello"}}}}}
+
+glob.paths
+#=> ["a.b.c.d.e"]
 ```
 
 ## Maintainer
