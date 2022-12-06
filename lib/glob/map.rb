@@ -7,7 +7,6 @@ module Glob
     end
 
     def initialize(target)
-      @keys = []
       @target = target
     end
 

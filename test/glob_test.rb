@@ -240,4 +240,40 @@ class GlobTest < Minitest::Test
     assert_equal ({node: {"more.keys.with.dots": "more dots"}}),
                  Glob.filter(data, ["node.more\\.keys\\.with\\.dots"])
   end
+
+  test "sorts set when setting new keys" do
+    data = {d: "d", a: "a", b: "b"}
+
+    glob = Glob.new(data)
+    glob << "*"
+
+    assert_equal({a: "a", b: "b", d: "d"}, glob.to_h)
+
+    glob.set("c", "c")
+    glob.set("e.b1.b2.b3", "e---b")
+    glob.set("e.a1.a2.a3", "e---a")
+
+    expected = {
+      a: "a", b: "b", c: "c", d: "d",
+      e: {a1: {a2: {a3: "e---a"}}, b1: {b2: {b3: "e---b"}}}
+    }
+
+    assert_equal(expected, glob.to_h)
+    assert_equal ["a", "b", "c", "d", "e.a1.a2.a3", "e.b1.b2.b3"], glob.paths
+  end
+
+  test "replaces existing node when setting a new path" do
+    glob = Glob.new(a: 1, b: {b1: {b2: 2}})
+    glob << "*"
+    glob.set("a.a1.a2", 4)
+    glob.set("b.b1.b2.b3", {b4: 5})
+
+    expected = {
+      a: {a1: {a2: 4}},
+      b: {b1: {b2: {b3: {b4: 5}}}}
+    }
+
+    assert_equal expected, glob.to_h
+    assert_equal ["a.a1.a2", "b.b1.b2.b3.b4"], glob.paths
+  end
 end

@@ -2,6 +2,8 @@
 
 module Glob
   class Query
+    PATH_SPLIT_RE = /(?<!\\)\./.freeze
+
     attr_reader :matchers
 
     def initialize(target)
@@ -18,12 +20,19 @@ module Glob
       symbolized_target = SymbolizeKeys.call(@target)
 
       paths.each_with_object({}) do |path, buffer|
-        segments = path.split(/(?<!\\)\./).map {|key| unescape(key).to_sym }
+        segments = path.split(PATH_SPLIT_RE).map {|key| unescape(key).to_sym }
         value = symbolized_target.dig(*segments)
         set_path_value(segments, buffer, value)
       end
     end
     alias to_hash to_h
+
+    def set(path, value)
+      set_path_value(path.split(PATH_SPLIT_RE), @target, value)
+      @map = Map.call(@target)
+
+      nil
+    end
 
     def paths
       matches = map.map do |path|
@@ -46,11 +55,14 @@ module Glob
     end
 
     private def set_path_value(segments, target, value)
+      segments = segments.dup.map(&:to_sym)
+
       while (segment = segments.shift)
         if segments.empty?
           target[segment] = value
         else
           target[segment] ||= {}
+          target[segment] = {} unless target[segment].is_a?(Hash)
           target = target[segment]
         end
       end
