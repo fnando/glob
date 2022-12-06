@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Glob
-  class Query
+  class Object
     PATH_SPLIT_RE = /(?<!\\)\./.freeze
 
     attr_reader :matchers

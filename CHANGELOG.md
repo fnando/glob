@@ -13,6 +13,7 @@ Prefix your message with one of the following:
 
 ## Unreleased
 
+- [Changed] `Glob::Query` has been renamed to `Glob::Object`.
 - [Added] Allow adding new keys with `glob.set(path, value)`.
 
 ## v0.3.1 - 2022-09-01
