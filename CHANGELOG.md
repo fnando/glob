@@ -11,7 +11,7 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## v0.4.0 - 2022-12-05
 
 - [Changed] `Glob::Query` has been renamed to `Glob::Object`.
 - [Added] Allow adding new keys with `glob.set(path, value)`.
