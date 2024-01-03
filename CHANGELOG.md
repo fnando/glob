@@ -11,6 +11,10 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
+## unreleased
+
+- [Fixed] Fix partial matching when not using `*`.
+
 ## v0.4.0 - 2022-12-05
 
 - [Changed] `Glob::Query` has been renamed to `Glob::Object`.
