@@ -3,6 +3,17 @@
 require "test_helper"
 
 class GlobTest < Minitest::Test
+  test "with partial matching" do
+    glob = Glob.new(
+      en: {editor: "editor", edit: "edit"},
+      pt: {editor: "editor", edit: "edit"}
+    )
+
+    glob << "*.edit"
+
+    assert_equal ["en.edit", "pt.edit"], glob.paths
+  end
+
   test "with rejecting filter" do
     glob = Glob.new(
       en: {

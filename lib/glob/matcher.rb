@@ -11,7 +11,8 @@ module Glob
       pattern = Regexp.escape(path.gsub(/^!/, ""))
                       .gsub(/(\\{.*?\\})/) {|match| process_group(match) }
                       .gsub("\\*", "[^.]+")
-      @regex = Regexp.new("^#{pattern}")
+      anchor = path.end_with?("*") ? "" : "$"
+      @regex = Regexp.new("^#{pattern}#{anchor}")
     end
 
     def match?(other)
