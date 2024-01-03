@@ -10,7 +10,7 @@ module Glob
 
       pattern = Regexp.escape(path.gsub(/^!/, ""))
                       .gsub(/(\\{.*?\\})/) {|match| process_group(match) }
-                      .gsub(/\\\*/, "[^.]+")
+                      .gsub("\\*", "[^.]+")
       @regex = Regexp.new("^#{pattern}")
     end
 

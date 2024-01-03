@@ -51,7 +51,7 @@ module Glob
     end
 
     private def unescape(key)
-      key.to_s.gsub(/\\\./, ".")
+      key.to_s.gsub("\\.", ".")
     end
 
     private def set_path_value(segments, target, value)

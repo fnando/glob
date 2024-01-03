@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./lib/glob/version"
+require_relative "lib/glob/version"
 
 Gem::Specification.new do |spec|
   spec.name    = "glob"
