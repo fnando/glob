@@ -1,7 +1,6 @@
 # glob
 
-[![Tests](https://github.com/fnando/glob/workflows/ruby-tests/badge.svg)](https://github.com/fnando/glob)
-[![Code Climate](https://codeclimate.com/github/fnando/glob/badges/gpa.svg)](https://codeclimate.com/github/fnando/glob)
+[![ruby-tests](https://github.com/fnando/glob/actions/workflows/ruby-tests.yml/badge.svg)](https://github.com/fnando/glob/actions/workflows/ruby-tests.yml)
 [![Gem](https://img.shields.io/gem/v/glob.svg)](https://rubygems.org/gems/glob)
 [![Gem](https://img.shields.io/gem/dt/glob.svg)](https://rubygems.org/gems/glob)
 
