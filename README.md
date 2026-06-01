@@ -101,6 +101,12 @@ glob.paths
 
 glob.to_h
 #=> {:formats=>{:".rb"=>"Ruby"}}
+
+glob.match?("formats")
+#=> false
+
+glob.match?("formats.*")
+#=> true
 ```
 
 You can set new keys by using `.set(path, value)`:

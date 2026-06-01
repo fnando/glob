@@ -46,6 +46,13 @@ module Glob
         .sort
     end
 
+    def match?(wanted)
+      matcher = Matcher.new(wanted)
+      list = paths
+      list.include?(wanted) || list.any? {|path| matcher.match?(path) }
+    end
+    alias =~ match?
+
     private def map
       @map ||= Map.call(@target)
     end

@@ -287,4 +287,15 @@ class GlobTest < Minitest::Test
     assert_equal expected, glob.to_h
     assert_equal ["a.a1.a2", "b.b1.b2.b3.b4"], glob.paths
   end
+
+  test "checks key" do
+    glob = Glob.new(a: 1, b: {b1: {b2: 2}})
+    glob << "*"
+
+    assert_match glob, "a"
+    refute_match glob, "a.*"
+    assert_match glob, "b.*"
+    assert_match glob, "b.b1.*"
+    assert_match glob, "b.b1.b2"
+  end
 end
