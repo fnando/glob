@@ -11,9 +11,9 @@ Prefix your message with one of the following:
 - [Security] in case of vulnerabilities.
 -->
 
-## Unreleased
+## v0.5.0 - 2026-05-31
 
-- [Added] Add `Glob::Object#match?`, so you can check things like 
+- [Added] Add `Glob::Object#match?`, so you can check things like
   `glob.match?("a.*")`.
 
 ## v0.4.1 - 2024-01-03
